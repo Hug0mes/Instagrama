@@ -88,3 +88,19 @@ a{
 color: #17171748;
 font-size: 13px;
 }
+
+.profile-picture{
+border-radius: 50%;
+width: 80%;
+
+}
+
+.pfptop{
+    width: 10mm;
+    border-radius: 50%;
+}
+
+.pfptop2{
+    width: 7mm;
+ 
+}
