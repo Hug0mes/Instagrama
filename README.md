@@ -1,2 +1,2 @@
-# Instagrama
-Site "Instragama" feito em RC
+# <s>Instagrama</s> Tugalism
+Site "Tugalism" feito em RC
