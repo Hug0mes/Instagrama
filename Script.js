@@ -79,7 +79,7 @@ function checkLogin(res) {
 
 
 function getProfile() {
-
+    document.getElementsByClassName("pfptop").src = res.user.avatar;
     var token = localStorage.getItem("token");
     if (token != null) {
 
@@ -102,17 +102,13 @@ function getProfile() {
 }
 
 function showProfile(res) {
-    
+
     document.getElementById("Name_User").innerText = "@" + res.user.username;
     document.getElementById("Name_User2").innerText = res.user.username;
     document.getElementById("blah").src = res.user.avatar;
     document.getElementById("blah2").src = res.user.avatar;
     document.getElementById("blah3").src = res.user.avatar;
-    document.getElementById("blah4").src = res.user.avatar;
-    document.getElementById("blah5").src = res.user.avatar;
-    document.getElementById("blah6").src = res.user.avatar;
-    document.getElementById("blah7").src = res.user.avatar;
-    document.getElementById("blah8").src = res.user.avatar;
+    
 
 }
 
