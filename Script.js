@@ -29,9 +29,9 @@ function checkRegister(res) {
     console.log(res);
     if (res.message == "CREATED") {
         alert("Conta criada com sucesso!");
-        location.replace("User_Area.html");
+        location.replace("Login.html");
     } else {
-        alert("Erro");
+        alert("Algo de errado não está certo");
     }
 }
 
@@ -79,7 +79,7 @@ function checkLogin(res) {
 
 
 function getProfile() {
-    document.getElementsByClassName("pfptop").src = res.user.avatar;
+    
     var token = localStorage.getItem("token");
     if (token != null) {
 
@@ -95,20 +95,17 @@ function getProfile() {
             .then(res => showProfile(res));
 
     }
-    if (token == null) {
-
-        location.replace("Login.html");
-    }
+  
 }
 
 function showProfile(res) {
 
-    document.getElementById("Name_User").innerText = "@" + res.user.username;
-    document.getElementById("Name_User2").innerText = res.user.username;
     document.getElementById("blah").src = res.user.avatar;
-    document.getElementById("blah2").src = res.user.avatar;
-    document.getElementById("blah3").src = res.user.avatar;
+    document.getElementById("Name_User").innerText = "@" + res.user.username;
+    document.getElementsByClassName("pfptop").src = res.user.avatar;
     
+    document.getElementById("Name_User2").innerText = res.user.username;
+    document.getElementById("blah3").src = res.user.avatar;
 
 }
 
@@ -297,6 +294,29 @@ function showMessages(res) {
 
     console.log(res)
 
+    for (let i = 0; i < res.users.length; i++) {
+
+        var a = document.createElement('a');
+        var br = document.createElement('br');
+
+
+        a.href = "Outros_Users_profile.html"
+        a.id = res.users[i].id;
+
+        a.onclick = function () {
+
+            localStorage.setItem("userID", a.id);
+
+        };
+
+        a.innerText = res.users[i].username;
+        document.getElementById("list").appendChild(a);
+        document.getElementById("list").appendChild(br);
+
+
+    }
+
+
 
 }
 
@@ -329,4 +349,22 @@ function checkfolow(res) {
         alert("seguido com sucesso")
     }
 
+}
+
+function AddPost() {
+    var token = localStorage.getItem("token");
+    const fileInput = document.querySelector('#inputFile');
+    const formData = new FormData();
+
+    formData.append('avatar', fileInput.files[0]);
+
+    const options = {
+        method: 'POST',
+        body: formData,
+        headers: {
+            'Authorization': 'Bearer ' + token
+        }
+    };
+
+    fetch('https://tugalism.pt/api/updateAvatar', options);
 }
